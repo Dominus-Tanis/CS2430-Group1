@@ -18,7 +18,7 @@ public class ArrayGenerator {
 	 * @param right The second or "Right" index.
 	 * @return The mutated array.
 	 */
-    public static int[] swap(int data[], int left, int right)
+    private static int[] swap(int data[], int left, int right)
     {
 
         // Swap the provided indices
@@ -39,7 +39,7 @@ public class ArrayGenerator {
      * @param right The ending index.
      * @return The mutated array.
      */
-    public static int[] reverse(int data[], int left, int right)
+    private static int[] reverse(int data[], int left, int right)
     {
 
         // Reverse the sub-array
@@ -53,8 +53,29 @@ public class ArrayGenerator {
         return data;
     }
 
-    // Function to find the next permutation
-    // of the given integer array
+    /**
+     * Creates an array of size n starting at 0 where each element is +1 of the previous element.
+     * This array serves as the first lexicographically permeation of those numbers. 
+     * @param n The size of array you wish to create.
+     * @return array of size n starting at 0 where each element is +1 of the previous element.
+     */
+    public static int[] firstPermutation(int n) {
+    	//If the passed number would create an empty array 
+    	//or an array with negative length return an empty array.
+    	if( n < 1) {return new int[0];}
+    	//If a positive non zero number was passed, create an array with ascending values.
+    	else {
+    		//Create return array
+    		int[] data = new int[n];
+    		
+    		//Loop through n times adding the iteration count at the respective index
+    		for(int i = 0; i < n; i++) {
+    			data[i] = i;
+    		}
+    		return data;
+    	}
+    }
+    
     /**
      * Provided with an int array this method finds
      * the next lexicographically greater permutation of the provided array.
