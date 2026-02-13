@@ -5,8 +5,8 @@ package project1CS2430;
  * 
  * Contributers: GeeksForGeeks SpencerJPeck
  * Contributions:
- * 	GeeksForGeeks: Origin Code
- * 	SpencerJPeck: Adaptation and Documentation for current Project
+ * 	@author GeeksForGeeks: Origin Code
+ * 	@author SpencerJPeck: Adaptation and Documentation for current Project
  */
 public class ArrayGenerator {
 
@@ -17,6 +17,7 @@ public class ArrayGenerator {
 	 * @param left The first or "Left" index.
 	 * @param right The second or "Right" index.
 	 * @return The mutated array.
+	 * @author GeeksForGeeks
 	 */
     private static int[] swap(int data[], int left, int right)
     {
@@ -38,6 +39,7 @@ public class ArrayGenerator {
      * @param left The starting index.
      * @param right The ending index.
      * @return The mutated array.
+	 * @author GeeksForGeeks
      */
     private static int[] reverse(int data[], int left, int right)
     {
@@ -58,6 +60,7 @@ public class ArrayGenerator {
      * This array serves as the first lexicographically permeation of those numbers. 
      * @param n The size of array you wish to create.
      * @return array of size n starting at 0 where each element is +1 of the previous element.
+	 * @author SpencerJPeck
      */
     public static int[] firstPermutation(int n) {
     	//If the passed number would create an empty array 
@@ -84,6 +87,7 @@ public class ArrayGenerator {
      * @param data An int array to base the next permutation.
      * @return True, if the operation mutated the provided array into greater permutation.
      * @return False, if no greater permutation exists.
+	 * @author GeeksForGeeks
      */
     public static boolean findNextPermutation(int data[])
     {

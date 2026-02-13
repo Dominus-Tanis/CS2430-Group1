@@ -1,6 +1,67 @@
 package project1CS2430;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
 public class Sorter {
+	/**
+	 * Stores the file name for the data report file
+	 * This is a path so could be rerouted to another folder but will normally create at the project's directory
+	 */
+	public static Path dataFile = Paths.get("project_1_data.txt");
+	
+	/**
+	 * Using the stored file path, this method appends the given int array to the stored file.
+	 * Limited AI was used for this method (quick lookup on how Files usage)
+	 * 
+	 * Now testing the following array:
+	 * [array]
+	 * 
+	 * @param dataFile Where the file path is stored.
+	 * @param arrayData The array you wish to append to the report file.
+	 * @author SpencerJPeck
+	 */
+	public static void appendReport(int[] arrayData) {
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("\nNow testing the following array:\n[ ");
+			for (int i = 0; i < arrayData.length; i++) {
+				sb.append(arrayData[i]);
+				if (i < arrayData.length - 1) sb.append(", ");
+			}
+			sb.append(" ]");
+
+			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * Using the stored file path, this method appends the given string to be labeled as a sort method
+	 * and the number of counts the sort took to the stored file.
+	 * 
+	 * Using: sortMethod. Comparisons: count.
+	 * @param dataFile Where the file path is stored.
+	 * @param sortMethod
+	 * @param count
+	 * @author SpencerJPeck
+	 */
+	public static void appendReport(String sortMethod, int count) {
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".");
+			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	public static long count = 0;
     static void sortheap(int[] arr, int n, int i) {
