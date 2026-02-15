@@ -1,5 +1,7 @@
 package project1CS2430;
 
+import java.util.Arrays;
+
 /*
  * Runs four algorithms on each permutation, and records:
  * Algorithm name
@@ -12,33 +14,49 @@ public class Main {
 		/*Change this to adjust how large the arrays to be sorted are.
 		 *Assignment requires to gather data on: (dataLength)n = 4, 6, 8
 		 */ 
-		int dataLength = 4;
+		int dataLength = 8;
 		
 		int[] arry; //Stores the data to sort
 		
-		//Run Quick Sort
+		//====================
+		//QUICK SORT
+		//====================
+		System.out.println("Running Quick Sort"); //Terminal Feedback
 		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
-		while(ArrayGenerator.findNextPermutation(arry)) {//Repeat until no new permutation 
-			Sorter.quickSort(arry);
+		do {
+			Sorter.quickSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 		}
+		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation 
 
-		//Run Shaker Sort
+		//====================
+		//SHAKER SORT
+		//====================
+		System.out.println("Running Shaker Sort"); //Terminal Feedback
 		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
-		while(ArrayGenerator.findNextPermutation(arry)) {//Repeat until no new permutation 
-			Sorter.shakerSort(arry);
+		do {
+			Sorter.shakerSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 		}
+		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 		
-		//Run Heap Sort
+		//====================
+		//HEAP SORT
+		//====================
+		System.out.println("Running Heap Sort"); //Terminal Feedback
 		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
-		while(ArrayGenerator.findNextPermutation(arry)) { //Repeat until no new permutation 
-			//Sorter.heapSort(arry, ?, ?);
+		do {
+			//Sorter.heapSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 		}
+		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 		
-		//Run Merge Sort
+		//====================
+		//MERGE SORT
+		//====================
+		System.out.println("Running Merge Sort"); //Terminal Feedback
 		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
-		while(ArrayGenerator.findNextPermutation(arry)) {//Repeat until no new permutation 
-			//Sorter.mergeSort(arry);
+		do {
+			//Sorter.mergeSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 		}
+		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 
 	}
 
