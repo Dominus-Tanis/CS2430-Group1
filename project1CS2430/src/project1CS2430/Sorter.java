@@ -62,7 +62,7 @@ public class Sorter {
 	private static void appendReport(String sortMethod, long count) {
 		try {
 			StringBuilder sb = new StringBuilder();//Create format to send to File writer
-			sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".");// Add message Data
+			sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".\n");// Add message Data
 			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND); //Write data to file
 			
 		} catch (IOException e) {
