@@ -7,11 +7,19 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class Sorter {
+	/*
+	 * Stores the number of comparisons from a sort 
+	 */
+	public static long count = 0;
 	/**
 	 * Stores the file name for the data report file
 	 * This is a path so could be rerouted to another folder but will normally create at the project's directory
 	 */
 	public static Path dataFile = Paths.get("project_1_data.txt");
+	
+	//======================================
+	// Report Writing
+	// =====================================
 	
 	/**
 	 * Using the stored file path, this method appends the given int array to the stored file.
@@ -24,17 +32,17 @@ public class Sorter {
 	 * @param arrayData The array you wish to append to the report file.
 	 * @author SpencerJPeck
 	 */
-	public static void appendReport(int[] arrayData) {
+	private static void appendReport(int[] arrayData) {
 		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("\nNow testing the following array:\n[ ");
-			for (int i = 0; i < arrayData.length; i++) {
+			StringBuilder sb = new StringBuilder(); //Create format to send to File writer
+			sb.append("\nNow testing the following array:\n[ "); // Add message Data
+			for (int i = 0; i < arrayData.length; i++) { //Add Array Data
 				sb.append(arrayData[i]);
 				if (i < arrayData.length - 1) sb.append(", ");
 			}
 			sb.append(" ]");
 
-			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND);
+			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND); //Write data to file
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -51,11 +59,11 @@ public class Sorter {
 	 * @param count
 	 * @author SpencerJPeck
 	 */
-	public static void appendReport(String sortMethod, int count) {
+	private static void appendReport(String sortMethod, long count) {
 		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".");
-			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND);
+			StringBuilder sb = new StringBuilder();//Create format to send to File writer
+			sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".");// Add message Data
+			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND); //Write data to file
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -63,8 +71,11 @@ public class Sorter {
 		
 	}
 
-	public static long count = 0;
-    static void sortheap(int[] arr, int n, int i) {
+    // ============================================================
+    // Mike (Heapsort Implementation)
+    // ============================================================
+    
+    static void heapSort(int[] arr, int n, int i) {
 //	    	System.out.println("printing heapsort..."); // p.c.
 //	    	System.out.println("n="+n+", i="+i); // p.c.
 	        // largest is set to i to setup the variable for comparisons later
@@ -107,7 +118,7 @@ public class Sorter {
 //	            System.out.println("heapsort recursing..."); // p.c.
 //	            System.out.println("i = largest"); // p.c.
 	          
-	            sortheap(arr, n, largest);
+	            heapSort(arr, n, largest);
 //	            System.out.println(""); // p.c.
 	        }
 	        // printed for clarity
@@ -134,7 +145,10 @@ public class Sorter {
         if (arr == null || arr.length == 0) {
             return;
         }
+        count = 0; // Reset Counter
+        appendReport(arr); // Write array data to file -Spencer
         quickSortRecursive(arr, 0, arr.length - 1);
+        appendReport("Quick Sort", count); // Write Sort data to file -Spencer
     }
 
     /**
@@ -207,6 +221,8 @@ public class Sorter {
         if (arr == null || arr.length == 0) {
             return;
         }
+        count = 0; // Reset Counter
+        appendReport(arr); // Write array data to file -Spencer
         
         boolean swapped = true;
         int start = 0;
@@ -258,6 +274,7 @@ public class Sorter {
             // smallest number to its rightful spot.
             start = start + 1;
         }
+        appendReport("Shaker Sort", count); // Write Sort data to file -Spencer
     }
     /*****************************************
      * Merge Sort
