@@ -72,61 +72,88 @@ public class Sorter {
 	}
 
     // ============================================================
-    // Mike (Heapsort Implementation)
+    // Mike (Heapsort Implementation) recent changes: added heapStart method and modified heapSort
     // ============================================================
     
     static void heapSort(int[] arr, int n, int i) {
-//	    	System.out.println("printing heapsort..."); // p.c.
-//	    	System.out.println("n="+n+", i="+i); // p.c.
-	        // largest is set to i to setup the variable for comparisons later
-//	    	System.out.println(i); // p.c.
-	        int largest = i;
+//    	System.out.println("printing heapsort..."); // p.c.
+//    	System.out.println("n="+n+", i="+i); // p.c.
+        // largest is set to i to setup the variable for comparisons later
+//    	System.out.println(i); // p.c.
+        int largest = i;
 
-	        // left index = 2*i + 1
-	        int left = 2 * i + 1;
-//	        System.out.println(left); // p.c.
+        // left index = 2*i + 1
+        int left = 2 * i + 1;
+//        System.out.println(left); // p.c.
 
-	        // right index = 2*i + 2
-	        int right = 2 * i + 2;
-//	        System.out.println(right); // p.c.
-	        
-	        // if left subtree is bigger than root
-	        if (left < n && arr[left] > arr[largest]) {
-	            largest = left;
-//	            System.out.println("left child is larger: "+arr[largest]); // p.c.
-	        }
-	        // if right subtree is bigger than root
-	        if (right < n && arr[right] > arr[largest]) {
-	            largest = right;
-//	            System.out.println("right child is larger: "+arr[largest]); // p.c.
-	        }
+        // right index = 2*i + 2
+        int right = 2 * i + 2;
+//        System.out.println(right); // p.c.
+        
+        // if left subtree is bigger than root
+        if (left < n && arr[left] > arr[largest]) {
+            largest = left;
+//            System.out.println("left child is larger: "+arr[largest]); // p.c.
+        }
+        // if right subtree is bigger than root
+        if (right < n && arr[right] > arr[largest]) {
+            largest = right;
+//            System.out.println("right child is larger: "+arr[largest]); // p.c.
+        }
 
-	        //if the root got replaced by a child node, set new largest and run again
-//	        System.out.println("largest is not root"); // p.c.
-	        if (largest != i) {
-//	        	System.out.println("largest does not equal i, "+arr[largest]+", "+arr[i]); // p.c.
-	            
-	        	int temp = arr[i];
-//	            System.out.println("printing temp = arr[i]"+arr[i]); // p.c.
-	            
-	            arr[i] = arr[largest];
-//	            System.out.println("printing arr[i] = arr[largest]"+arr[i]); // p.c.
-	            
-	            arr[largest] = temp;
-//	            System.out.println("printing arr[largest] = temp"+arr[largest]); // p.c.
+        //if the root got replaced by a child node, set new largest and run again
+//        System.out.println("largest is not root"); // p.c.
+        if (largest != i) {
+//        	System.out.println("largest does not equal i, "+arr[largest]+", "+arr[i]); // p.c.
+            
+        	int temp = arr[i];
+//            System.out.println("printing temp = arr[i]"+arr[i]); // p.c.
+            
+        	arr[i] = arr[largest];
+//            System.out.println("printing arr[i] = arr[largest]"+arr[i]); // p.c.
+            
+            arr[largest] = temp;
+//            System.out.println("printing arr[largest] = temp"+arr[largest]); // p.c.
 
-//	            System.out.println("heapsort recursing..."); // p.c.
-//	            System.out.println("i = largest"); // p.c.
-	          
-	            heapSort(arr, n, largest);
-//	            System.out.println(""); // p.c.
-	        }
-	        // printed for clarity
-//	        else {
-//	        	System.out.println("largest did equal i, "+arr[largest]+", "+arr[i]); // p.c.
-//	       	System.out.println(""); // p.c.
-//	        }
-    }
+//            System.out.println("heapsort recursing..."); // p.c.
+//            System.out.println("i = largest"); // p.c.
+          
+            heapSort(arr, n, largest);
+//            System.out.println(""); // p.c.
+        }
+        // printed for clarity
+//        else {
+//        	System.out.println("largest did equal i, "+arr[largest]+", "+arr[i]); // p.c.
+//       	System.out.println(""); // p.c.
+//        }
+        }
+    
+    // this method calls heapSort multiple times to fully sort the array in a max heap
+    // heapStart should be used when calling for a heapsort as this method will call heapSort multiple times and then return the sorted array
+    public static int[] heapStart(int[] arr) {
+        int n = arr.length;
+//      System.out.println("i = n / 2 - 1, and n = array.length"); // p.c.
+        
+        for (int i = n / 2 - 1; i >= 0; i--) {
+//        	System.out.println("i = " + i + ", n = " + n + "."); // p.c.
+//        	System.out.println("printing current array..."); // p.c.
+//        	for(int z = 0; z < arr.length; z++) // p.c.
+//            	System.out.print(arr[z]+" "); // p.c.
+//        	System.out.println(""); // p.c.
+        	
+        	heapSort(arr, n, i);
+        }
+        // move root to the end of the array
+        for (int i = n - 1; i > 0; i--) {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            heapSort(arr, i, 0);
+        }
+        System.out.println("Heapsort Done");
+        return arr; // returns sorted array, which can be stored into a variable calling this function
+        }
+
  // ============================================================
     // Andrew (Mergesort Implementation)
     // ============================================================
@@ -368,4 +395,5 @@ public class Sorter {
     }
 }
   
+
 
