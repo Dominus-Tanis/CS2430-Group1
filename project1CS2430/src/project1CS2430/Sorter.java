@@ -218,16 +218,6 @@ public class Sorter {
         }
     }
     
-
-}
-
-
-		
-
-	 
-	 
-
-
     // ============================================================
     // KEVIN (Quicksort Implementation)
     // ============================================================
@@ -376,5 +366,6 @@ public class Sorter {
         }
         appendReport("Shaker Sort", count); // Write Sort data to file -Spencer
     }
+}
   
 
