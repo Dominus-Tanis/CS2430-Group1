@@ -62,36 +62,42 @@ public class SorterTest {
 
         // ============================================================
         // TEST: Merge Sort (Andrew)
-        // Note: Testing compatibility with Comparable[] inputs
         // ============================================================
         System.out.println("\n--- Testing Merge Sort (Andrew) ---");
         try {
-            // Must use Integer[] (Object) instead of int[] (Primitive)
-            // because Andrew's code signature is: sort(Comparable[] a)
-            Integer[] input = { 12, 7, 14, 9, 10, 11 };
-            Integer[] expected = { 7, 9, 10, 11, 12, 14 };
+            // Updated to use int[] instead of Integer[] to match Andrew's new implementation
+            int[] input = { 12, 7, 14, 9, 10, 11 };
+            int[] expected = { 7, 9, 10, 11, 12, 14 };
             
-            // Call Andrew's sort
-            Sorter.sort(input);
+            Sorter.count = 0;
             
-            // Check results
-            if (Arrays.equals(input, expected)) {
-                System.out.println("PASS: Merge Sort logic works (using Integer[] wrapper)");
-            } else {
-                System.err.println("FAIL: Merge Sort Result: " + Arrays.toString(input));
-            }
+            // Andrew's mergeSort signature requires the bounds (left and right index)
+            Sorter.mergeSort(input, 0, input.length - 1);
+            
+            assertArrayEquals("Merge Sort logic", expected, input);
+            
         } catch (Exception e) {
             System.err.println("FAIL: Merge Sort Exception: " + e.getMessage());
         }
         
         // ============================================================
         // TEST: Heap Sort (Mike)
-        // Note: The provided Sorter.java only contains the 'heapify' helper
         // ============================================================
         System.out.println("\n--- Testing Heap Sort (Mike) ---");
-        System.out.println("SKIP: The file 'Sorter.java' currently contains the 'heapSort' helper method \n" +
-                           "      but implies the full sorting loop is inside Main or missing. \n" +
-                           "      (Cannot unit test full sort on this method alone).");
+        try {
+            int[] input = { 3, 9, 2, 1, 4, 5 };
+            int[] expected = { 1, 2, 3, 4, 5, 9 };
+            
+            Sorter.count = 0;
+            
+            // Call Mike's newly added heapStart method
+            Sorter.heapStart(input);
+            
+            assertArrayEquals("Heap Sort logic", expected, input);
+            
+        } catch (Exception e) {
+            System.err.println("FAIL: Heap Sort Exception: " + e.getMessage());
+        }
 
         // CLEANUP: Delete the test report file
         try {
