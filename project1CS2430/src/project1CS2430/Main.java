@@ -15,9 +15,10 @@ public class Main {
 		/*Change this to adjust how large the arrays to be sorted are.
 		 *Assignment requires to gather data on: (dataLength)n = 4, 6, 8
 		 */ 
-		int dataLength = 4;
+		int dataLength = 8;
 		
 		int[] arry; //Stores the data to sort
+		System.out.println("Running for N: " + dataLength); //Terminal Feedback
 		//Sorter.dataFile = Paths.get("project_1_data.txt");
 		//====================
 		//QUICK SORT
@@ -31,17 +32,9 @@ public class Main {
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation 
 		
 		Sorter.reports.sort(null);
-		System.out.println("Best 10");
-		for(int i = 0; i < 10; i++ ) {
-			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
-		}
-		System.out.println("Worst 10");
-		
-		Sorter.reports.reversed();
-		for(int i = 0; i < 10; i++ ) {
-			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
-		}
-
+		best10();		
+		worst10();
+		average();
 		//====================
 		//SHAKER SORT
 		//====================
@@ -54,17 +47,9 @@ public class Main {
 		}
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 
-		System.out.println("Best 10");
-		Sorter.reports.sort(null);
-		for(int i = 0; i < 10; i++ ) {
-			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
-		}
-
-		System.out.println("Worst 10");
-		Sorter.reports.reversed();
-		for(int i = 0; i < 10; i++ ) {
-			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
-		}
+		best10();		
+		worst10();
+		average();
 		//====================
 		//HEAP SORT
 		//====================
@@ -76,17 +61,9 @@ public class Main {
 		}
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 
-		System.out.println("Best 10");
-		Sorter.reports.sort(null);
-		for(int i = 0; i < 10; i++ ) {
-			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
-		}
-
-		System.out.println("Worst 10");
-		Sorter.reports.reversed();
-		for(int i = 0; i < 10; i++ ) {
-			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
-		}
+		best10();		
+		worst10();
+		average();
 		//====================
 		//MERGE SORT
 		//====================
@@ -98,17 +75,34 @@ public class Main {
 		}
 		while(ArrayGenerator.findNextPermutation(arry));
 
+		best10();		
+		worst10();
+		average();
+	}
+
+	private static void best10() {
 		System.out.println("Best 10");
-		Sorter.reports.sort(null);
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
 		}
+	}
 
-		System.out.println("Worst 10");
+	private static void worst10() {
+		System.out.println("Worst 10");		
 		Sorter.reports.reversed();
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
 		}
+	}
+
+	private static void average() {
+		System.out.println("Average");
+		int sum = 0;
+		for(SortReportData report : Sorter.reports) {
+			sum += report.count;
+		}
+
+		System.out.println(" " + sum/Sorter.reports.size());
 	}
 
 }
