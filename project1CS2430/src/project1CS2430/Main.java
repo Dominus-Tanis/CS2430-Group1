@@ -15,7 +15,7 @@ public class Main {
 		/*Change this to adjust how large the arrays to be sorted are.
 		 *Assignment requires to gather data on: (dataLength)n = 4, 6, 8
 		 */ 
-		int dataLength = 8;
+		int dataLength = 4;
 		
 		int[] arry; //Stores the data to sort
 		//Sorter.dataFile = Paths.get("project_1_data.txt");
@@ -31,9 +31,11 @@ public class Main {
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation 
 		
 		Sorter.reports.sort(null);
+		System.out.println("Best 10");
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
 		}
+		System.out.println("Worst 10");
 		
 		Sorter.reports.reversed();
 		for(int i = 0; i < 10; i++ ) {
@@ -52,11 +54,13 @@ public class Main {
 		}
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 
+		System.out.println("Best 10");
 		Sorter.reports.sort(null);
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
 		}
-		
+
+		System.out.println("Worst 10");
 		Sorter.reports.reversed();
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
@@ -72,11 +76,13 @@ public class Main {
 		}
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 
+		System.out.println("Best 10");
 		Sorter.reports.sort(null);
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
 		}
-		
+
+		System.out.println("Worst 10");
 		Sorter.reports.reversed();
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
@@ -92,11 +98,13 @@ public class Main {
 		}
 		while(ArrayGenerator.findNextPermutation(arry));
 
+		System.out.println("Best 10");
 		Sorter.reports.sort(null);
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(i).arry) + " " + Sorter.reports.get(i).count);
 		}
-		
+
+		System.out.println("Worst 10");
 		Sorter.reports.reversed();
 		for(int i = 0; i < 10; i++ ) {
 			System.out.println("" + Arrays.toString(Sorter.reports.get(Sorter.reports.size() - i -1).arry) + " " + Sorter.reports.get(Sorter.reports.size() - i-1).count);
