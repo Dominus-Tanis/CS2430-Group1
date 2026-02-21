@@ -1,5 +1,6 @@
 package project1CS2430;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 /*
@@ -17,7 +18,8 @@ public class Main {
 		int dataLength = 8;
 		
 		int[] arry; //Stores the data to sort
-		
+		Sorter.newReport();
+		Sorter.dataFile = Paths.get("project_1_data.txt");
 		//====================
 		//QUICK SORT
 		//====================
@@ -44,7 +46,7 @@ public class Main {
 		System.out.println("Running Heap Sort"); //Terminal Feedback
 		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
 		do {
-			//Sorter.heapSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
+			Sorter.heapSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 		}
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
 		
@@ -54,6 +56,7 @@ public class Main {
 		System.out.println("Running Merge Sort"); //Terminal Feedback
 		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
 		do {
+			Sorter.shakerSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 			//Sorter.mergeSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
 		}
 		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation

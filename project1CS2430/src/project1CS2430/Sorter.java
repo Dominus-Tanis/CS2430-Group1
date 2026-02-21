@@ -1,10 +1,15 @@
 package project1CS2430;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.FileAttribute;
+import java.util.Arrays;
+import java.util.List;
 
 public class Sorter {
 	/*
@@ -35,12 +40,13 @@ public class Sorter {
 	private static void appendReport(int[] arrayData) {
 		try {
 			StringBuilder sb = new StringBuilder(); //Create format to send to File writer
-			sb.append("\nNow testing the following array:\n[ "); // Add message Data
+			//sb.append("\nNow testing the following array:\n[ "); // Add message Data //Removed for easy data processing formatting
+			sb.append("["); // Add message Data
 			for (int i = 0; i < arrayData.length; i++) { //Add Array Data
 				sb.append(arrayData[i]);
-				if (i < arrayData.length - 1) sb.append(", ");
+				if (i < arrayData.length - 1) sb.append("-");
 			}
-			sb.append(" ]");
+			sb.append("],");
 
 			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND); //Write data to file
 		} catch (IOException e) {
@@ -62,9 +68,25 @@ public class Sorter {
 	private static void appendReport(String sortMethod, long count) {
 		try {
 			StringBuilder sb = new StringBuilder();//Create format to send to File writer
-			sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".\n");// Add message Data
+			//sb.append("\nUsing: "+ sortMethod + ".\nComparisons: " + count+ ".\n");// Add message Data
+			sb.append(sortMethod + "," + count+ "\n");// Add message Data
 			Files.write(dataFile, sb.toString().getBytes(), StandardOpenOption.APPEND); //Write data to file
 			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * Deletes the file and creates a new report with just a header
+	 * @author SpencerJPeck
+	 */
+	public static void newReport() {
+		try {
+			Files.delete(dataFile);
+			List<String> lines = Arrays.asList("Array,Method,Comparisons");
+			Files.write(dataFile, lines, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -130,7 +152,7 @@ public class Sorter {
     
     // this method calls heapSort multiple times to fully sort the array in a max heap
     // heapStart should be used when calling for a heapsort as this method will call heapSort multiple times and then return the sorted array
-    public static int[] heapStart(int[] arr) {
+    public static int[] heapSort(int[] arr) {
         int n = arr.length;
 //      System.out.println("i = n / 2 - 1, and n = array.length"); // p.c.
         
@@ -150,7 +172,7 @@ public class Sorter {
             arr[i] = temp;
             heapSort(arr, i, 0);
         }
-        System.out.println("Heapsort Done");
+        //System.out.println("Heapsort Done");
         return arr; // returns sorted array, which can be stored into a variable calling this function
         }
 
