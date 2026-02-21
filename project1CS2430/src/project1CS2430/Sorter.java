@@ -6,14 +6,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Sorter {
+	/**
+	 * Stores Data
+	 */
+	public static List<SortReportData> reports = new ArrayList<>();
 	/*
 	 * Stores the number of comparisons from a sort 
 	 */
-	public static long count = 0;
+	public static int count = 0;
 	/**
 	 * Stores the file name for the data report file
 	 */
@@ -29,13 +34,14 @@ public class Sorter {
 	 * @author SpencerJPeck
 	 */
 	public static void newReport() {
-		try {
-			Files.deleteIfExists(dataFile);
-			List<String> lines = Arrays.asList("Array,Method,Comparisons");
-			Files.write(dataFile, lines, StandardCharsets.UTF_8);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//try {
+			reports.clear();
+			//Files.deleteIfExists(dataFile);
+			//List<String> lines = Arrays.asList("Array,Method,Comparisons");
+			//Files.write(dataFile, lines, StandardCharsets.UTF_8);
+		//} catch (IOException e) {
+			//e.printStackTrace();
+		//}
 	}
 
 	/**
@@ -88,14 +94,17 @@ public class Sorter {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
-        
+
+        count++; // INCREMENT: Data comparison count
         if (left < n && arr[left] > arr[largest]) {
             largest = left;
         }
+        count++; // INCREMENT: Data comparison count
         if (right < n && arr[right] > arr[largest]) {
             largest = right;
         }
 
+        count++; // INCREMENT: Data comparison count
         if (largest != i) {
         	int temp = arr[i];
         	arr[i] = arr[largest];
@@ -108,7 +117,8 @@ public class Sorter {
         if (arr == null || arr.length == 0) return arr;
         
         count = 0;           // Reset Counter
-        appendReport(arr);   // Write starting array
+        //appendReport(arr);   // Write starting array
+        int[] tempArry = Arrays.copyOf(arr, arr.length);
         
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--) {
@@ -121,7 +131,8 @@ public class Sorter {
             heapSort(arr, i, 0);
         }
         
-        appendReport("Heap Sort", count); // Final report
+        //appendReport("Heap Sort", count); // Final report
+        reports.add(new SortReportData("HeapSort", tempArry, count));
         return arr; 
     }
 
@@ -136,12 +147,15 @@ public class Sorter {
         if (arr == null || arr.length == 0) return;
         
         count = 0;           // Reset Counter ONCE at the start
-        appendReport(arr);   // Write array data to file ONCE
+        //appendReport(arr);   // Write array data to file ONCE
+        int[] tempArry = Arrays.copyOf(arr, arr.length);
+        
         
         // Call Andrew's original recursive method
         mergeSortRecursive(arr, 0, arr.length - 1);
         
-        appendReport("Merge Sort", count); // Final report ONCE
+        //appendReport("Merge Sort", count); // Final report ONCE
+        reports.add(new SortReportData("MergeSort", tempArry, count));
     }
 
     // Andrew's original function that sorts arr[l..r]
@@ -208,9 +222,11 @@ public class Sorter {
             return;
         }
         count = 0; 
-        appendReport(arr); 
+        int[] tempArry = Arrays.copyOf(arr, arr.length);
+        //appendReport(arr); 
         quickSortRecursive(arr, 0, arr.length - 1);
-        appendReport("Quick Sort", count); 
+        //appendReport("Quick Sort", count); 
+        reports.add(new SortReportData("QuickSort", tempArry, count));
     }
 
     private static void quickSortRecursive(int[] arr, int low, int high) {
@@ -251,7 +267,8 @@ public class Sorter {
             return;
         }
         count = 0; 
-        appendReport(arr); 
+        int[] tempArry = Arrays.copyOf(arr, arr.length);
+        //appendReport(arr); 
         
         boolean swapped = true;
         int start = 0;
@@ -286,7 +303,8 @@ public class Sorter {
             }
             start = start + 1;
         }
-        appendReport("Shaker Sort", count); 
+        //appendReport("Shaker Sort", count); 
+        reports.add(new SortReportData("ShakerSort", tempArry, count));
     }
 }
   
