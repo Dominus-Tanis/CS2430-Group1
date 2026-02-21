@@ -53,14 +53,14 @@ public class Main {
 		//====================
 		//MERGE SORT
 		//====================
-		System.out.println("Running Merge Sort"); //Terminal Feedback
-		arry = ArrayGenerator.firstPermutation(dataLength); //Start with clean array
+		System.out.println("Running Merge Sort"); 
+		arry = ArrayGenerator.firstPermutation(dataLength); 
 		do {
-			Sorter.shakerSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
-			//Sorter.mergeSort(Arrays.copyOf(arry, dataLength)); //Perform Sort
+		    Sorter.mergeSort(Arrays.copyOf(arry, dataLength)); // Fixed call
 		}
-		while(ArrayGenerator.findNextPermutation(arry));//Repeat until no new permutation
+		while(ArrayGenerator.findNextPermutation(arry));
 
 	}
 
 }
+
