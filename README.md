@@ -19,6 +19,7 @@ Write code to generate all possible permutations of the integers 0 through n −
 
 
 {0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}
+
 Implement a standard lexicographic permutation algorithm (recommended) or any correct algorithm that enumerates all permutations without duplicates.
 
 Part 2 – Implement Sorting Algorithms
