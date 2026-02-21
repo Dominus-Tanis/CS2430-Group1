@@ -17,6 +17,7 @@ Output structure: Your program must be able to generate a clearly labeled summar
 Part 1 – Array Generator
 Write code to generate all possible permutations of the integers 0 through n − 1 for a given small n. For example, if n = 3, your generator must produce:
 
+
 {0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}
 Implement a standard lexicographic permutation algorithm (recommended) or any correct algorithm that enumerates all permutations without duplicates.
 
